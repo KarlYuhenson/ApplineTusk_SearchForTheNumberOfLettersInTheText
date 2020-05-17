@@ -10,19 +10,26 @@ public class ReadTextsFile {
     public static void main ( String[] args ) throws IOException {
 
         String sort;
-        TreeSet < String > tSet = new TreeSet< String > ( );
+        ArrayList< String > al = new ArrayList< String > ( );
+        ;
         FileReader fin = new FileReader ( "text.txt" );
 
         Scanner src = new Scanner ( fin );
+
         while ( src.hasNextLine ( ) ) {
             sort = src.nextLine ( );
-            tSet.add ( sort );
+            al.add ( sort );
+            Collections.sort ( al );
         }
-        System.out.println ( tSet );
+        for ( String word : al ) {
+            System.out.println ( word + ": " + Collections.frequency ( al , word ) );
+        }
 
-        for (String word : tSet) {
-            System.out.println(word + ": " + Collections.frequency(tSet, word));
+
+
+
+            }
+
         }
-    }
-    }
+
 
