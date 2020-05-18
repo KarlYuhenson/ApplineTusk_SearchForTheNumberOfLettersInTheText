@@ -3,33 +3,34 @@
 
 import java.io.*;
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 
 public class ReadTextsFile {
 
+    private static int comCount;
+
     public static void main ( String[] args ) throws IOException {
 
-        String sort;
-        ArrayList< String > al = new ArrayList< String > ( );
-        ;
-        FileReader fin = new FileReader ( "text.txt" );
+        String readText;
+        ArrayList< String > array = new ArrayList< String > ( );
 
-        Scanner src = new Scanner ( fin );
+        FileReader file = new FileReader ( "text.txt" );
 
-        while ( src.hasNextLine ( ) ) {
-            sort = src.nextLine ( );
-            al.add ( sort );
-            Collections.sort ( al );
+        Scanner scanner = new Scanner ( file );
+
+        while ( scanner.hasNextLine ( ) ) {
+            readText = scanner.nextLine ( );
+            array.add ( readText );
+            Collections.sort ( array );
         }
-        for ( String word : al ) {
-            System.out.println ( word + ": " + Collections.frequency ( al , word ) );
-        }
-
-
-
-
-            }
+        for ( String word : array ) {
+            System.out.println ( word + ": " + Collections.frequency ( array , word ) );
 
         }
+    }
+}
+
 
 
