@@ -1,11 +1,11 @@
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class ReadTextsFile {
     static Scanner scFile;
 
-    static void scannerFile () {
+    static void scannerFile ( ) {
         System.out.println ( "Введите путь до файла" );
         scFile = new Scanner ( System.in );
         File file = new File ( scFile.nextLine ( ) );
@@ -40,23 +40,14 @@ public class ReadTextsFile {
             System.out.println ( word + ": " + map.get ( word ) );
 
         }
-        Integer max = map.entrySet ( )
-                .stream ( )
-                .max ( ( entry1 , entry2 ) -> entry1.getValue ( ) > entry2.getValue ( ) ? 1 : - 1 )
-                .get ( )
-                .getValue ( );
+        int maxWordInText = (Collections.max ( map.values ( ) ));
+        for ( Map.Entry < String, Integer > entry : map.entrySet ( ) ) {
+            if ( entry.getValue ( ) == maxWordInText ) {
+                System.out.println ("--------------------------------------------------------");
+                System.out.println ( "Слово, которое встречается чаще, чем остальные - " + entry.getKey ( ) + ", "
+                        + " повторяется " + maxWordInText + " раз(а)");
 
-        List listOfMax = map.entrySet ( )
-                .stream ( )
-                .filter ( entry -> entry.getValue ( ) == max )
-                .map ( Map.Entry :: getKey )
-                .collect ( Collectors.toList ( ) );
-
-        System.out.println ( "------------------------------------------------------------------------------" );
-
-        System.out.println ( "Слово, которое встречается чаще, чем остальные - " + listOfMax +
-                ", " + "повторяется " + max + " раз(а)" );
-
-
+            }
+        }
     }
 }
