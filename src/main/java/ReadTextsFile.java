@@ -18,21 +18,21 @@ public class ReadTextsFile {
 
         public static void main ( String[] args ) {
             readFile ( );
-            Map<String, Integer> counterMap = new TreeMap <> ();
+            Map<String, Integer> map = new TreeMap <> ();
 
             for ( Scanner it = scannerText; it.hasNext ( ); ) {
-                String word = scannerText.next ( ).replaceAll ( "\\p{Punct}" , "" );;
-                if(!word.isEmpty()) {
-                    Integer count = counterMap.get(word);
+                String text = scannerText.next ( ).replaceAll ( "\\p{Punct}" , "" );;
+                if(! text.isEmpty()) {
+                    Integer count = map.get( text );
                     if(count == null) {
                         count = 0;
                     }
-                    counterMap.put(word, ++count);
+                    map.put( text , ++count);
                 }
             }
 
-            for(String word : counterMap.keySet()) {
-                System.out.println(word + ": " + counterMap.get(word));
+            for(String word : map.keySet()) {
+                System.out.println(word + ": " + map.get(word));
             }
         }
 }
